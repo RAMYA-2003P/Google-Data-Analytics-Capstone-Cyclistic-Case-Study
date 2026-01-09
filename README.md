@@ -13,8 +13,7 @@ SQL Queries:
 03. Data Cleaning
 04. Data Analysis
 
-Data Visualizations: Tableau
-
+Data Visualizations: Tableau Link - https://public.tableau.com/app/profile/ramya.kundapur/viz/Book1_17679295754180/Dashboard12
 Background
 Cyclistic
 A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day.
@@ -62,43 +61,7 @@ Data Exploration
 SQL Query: Data Exploration
 Before cleaning the data, I am familiarizing myself with the data to find the inconsistencies.
 
-Observations:
 
-The table below shows the all column names and their data types. The ride_id column is our primary key.
-
-image
-
-The following table shows number of null values in each column.
-
-image
-
-Note that some columns have same number of missing values. This may be due to missing information in the same row i.e. station's name and id for the same station and latitude and longitude for the same ending station.
-
-As ride_id has no null values, let's use it to check for duplicates.
-
-image
-
-There are no duplicate rows in the data.
-
-All ride_id values have length of 16 so no need to clean it.
-
-There are 3 unique types of bikes(rideable_type) in our data.
-
-image
-
-The started_at and ended_at shows start and end time of the trip in YYYY-MM-DD hh:mm:ss UTC format. New column ride_length can be created to find the total trip duration. There are 5360 trips which has duration longer than a day and 122283 trips having less than a minute duration or having end time earlier than start time so need to remove them. Other columns day_of_week and month can also be helpful in analysis of trips at different times in a year.
-
-Total of 833064 rows have both start_station_name and start_station_id missing which needs to be removed.
-
-Total of 892742 rows have both end_station_name and end_station_id missing which needs to be removed.
-
-Total of 5858 rows have both end_lat and end_lng missing which needs to be removed.
-
-member_casual column has 2 uniqued values as member or casual rider.
-
-image
-
-Columns that need to be removed are start_station_id and end_station_id as they do not add value to analysis of our current problem. Longitude and latitude location columns may not be used in analysis but can be used to visualise a map.
 
 Data Cleaning
 SQL Query: Data Cleaning
@@ -113,40 +76,7 @@ Data Visualization: Tableau
 The data is stored appropriately and is now prepared for analysis. I queried multiple relevant tables for the analysis and visualized them in Tableau.
 The analysis question is: How do annual members and casual riders use Cyclistic bikes differently?
 
-First of all, member and casual riders are compared by the type of bikes they are using.
 
-image
-
-The members make 59.7% of the total while remaining 40.3% constitutes casual riders. Each bike type chart shows percentage from the total. Most used bike is classic bike followed by the electric bike. Docked bikes are used the least by only casual riders.
-
-Next the number of trips distributed by the months, days of the week and hours of the day are examined.
-
-image image
-
-Months: When it comes to monthly trips, both casual and members exhibit comparable behavior, with more trips in the spring and summer and fewer in the winter. The gap between casuals and members is closest in the month of july in summmer.
-Days of Week: When the days of the week are compared, it is discovered that casual riders make more journeys on the weekends while members show a decline over the weekend in contrast to the other days of the week.
-Hours of the Day: The members shows 2 peaks throughout the day in terms of number of trips. One is early in the morning at around 6 am to 8 am and other is in the evening at around 4 pm to 8 pm while number of trips for casual riders increase consistently over the day till evening and then decrease afterwards.
-
-We can infer from the previous observations that member may be using bikes for commuting to and from the work in the week days while casual riders are using bikes throughout the day, more frequently over the weekends for leisure purposes. Both are most active in summer and spring.
-
-Ride duration of the trips are compared to find the differences in the behavior of casual and member riders.
-
-image
-image
-
-Take note that casual riders tend to cycle longer than members do on average. The length of the average journey for members doesn't change throughout the year, week, or day. However, there are variations in how long casual riders cycle. In the spring and summer, on weekends, and from 10 am to 2 pm during the day, they travel greater distances. Between five and eight in the morning, they have brief trips.
-
-These findings lead to the conclusion that casual commuters travel longer (approximately 2x more) but less frequently than members. They make longer journeys on weekends and during the day outside of commuting hours and in spring and summer season, so they might be doing so for recreation purposes.
-
-To further understand the differences in casual and member riders, locations of starting and ending stations can be analysed. Stations with the most trips are considered using filters to draw out the following conclusions.
-
-image
-
-Casual riders have frequently started their trips from the stations in vicinity of museums, parks, beach, harbor points and aquarium while members have begun their journeys from stations close to universities, residential areas, restaurants, hospitals, grocery stores, theatre, schools, banks, factories, train stations, parks and plazas.
-
-image
-
-Similar trend can be observed in ending station locations. Casual riders end their journay near parks, museums and other recreational sites whereas members end their trips close to universities, residential and commmercial areas. So this proves that casual riders use bikes for leisure activities while members extensively rely on them for daily commute.
 
 Summary:
 
